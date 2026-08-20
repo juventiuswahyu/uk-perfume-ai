@@ -70,7 +70,6 @@ if submitted:
                     model="openai/gpt-oss-20b",
                 )
                 
-                st.firework()
                 st.success("Analisis AI Investor Selesai!")
                 st.markdown(response.choices[0].message.content)
                 
