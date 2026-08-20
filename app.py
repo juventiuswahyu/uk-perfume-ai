@@ -1,7 +1,7 @@
 import streamlit as st
 from groq import Groq
 
-# Set konfigurasi tampilan halaman
+# Set konfigurasi halaman
 st.set_page_config(page_title="Sedes AI Perfume Investor", page_icon="🧴", layout="centered")
 
 st.title("🧴 Sedes AI Perfume Investor")
@@ -16,13 +16,11 @@ with st.form("pitch_form"):
     
     submitted = st.form_submit_button("🚀 Submit Pitch Ke Investor")
 
-# Logika saat tombol submit ditekan
 if submitted:
     if not copywriting or not team_name:
         st.warning("⚠️ Mohon isi Nama Kelompok dan Teks Copywriting secara lengkap!")
     else:
         try:
-            # Mengambil Groq API Key dari Streamlit Secrets
             groq_key = st.secrets["GROQ_API_KEY"]
             client = Groq(api_key=groq_key)
             
@@ -45,13 +43,14 @@ if submitted:
                 Gunakan nada bicara profesional, sedikit humor, dan relevan untuk anak SMA (Gen Z).
                 """
                 
-                # Menggunakan model llama-3.3-70b-versatile
+                # String nama model tanpa karakter khusus
+                target_model = "llama-3.3-70b-versatile"
+                
                 response = client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="llama-3.3-70b-versatile",
+                    model=target_model,
                 )
                 
-                # Efek animasi Roket & Toast
                 st.toast("🚀 Pitch berhasil dikirim ke AI Investor!", icon="🚀")
                 st.success("Analisis AI Investor Selesai!")
                 st.markdown(response.choices[0].message.content)
