@@ -1,10 +1,10 @@
 import streamlit as st
 from groq import Groq
 
-st.set_page_config(page_title="Sedes AI Perfume Investor", page_icon="🧴", layout="centered")
+st.set_page_config(page_title="UK AI Perfume Investor", page_icon="🧴", layout="centered")
 
-st.title("🧴 Sedes AI Perfume Investor")
-st.write("Uji pitch bisnis dan racikan parfum kelompokmu di hadapan AI Investor!")
+st.title("🧴 UK AI Perfume Investor")
+st.write("AI Promosi Sekolah Universitas Karangturi Semarang")
 
 # Form Input Pitching
 with st.form("pitch_form"):
