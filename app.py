@@ -41,10 +41,10 @@ if submitted:
                 Gunakan nada bicara profesional, sedikit humor, dan relevan untuk anak SMA (Gen Z).
                 """
                 
-                # Menggunakan model gemma2-9b-it (100% aktif di Groq)
+                # Menggunakan model produksi utama Groq yang aktif
                 response = client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="gemma2-9b-it",
+                    model="openai/gpt-oss-20b",
                 )
                 
                 st.balloons()
