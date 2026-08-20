@@ -1,7 +1,8 @@
 import streamlit as st
 from groq import Groq
 
-st.set_page_config(page_title="Sedes AI Perfume Investor", page_icon="💼")
+# Set konfigurasi tampilan halaman
+st.set_page_config(page_title="Sedes AI Perfume Investor", page_icon="💼", layout="centered")
 
 st.title("💼 Sedes AI Perfume Investor")
 st.write("Sampaikan ide *marketing* dan *copywriting* parfum kelompokmu. Lihat apakah AI Investor tertarik mendanai brand-mu!")
@@ -15,13 +16,15 @@ with st.form("pitch_form"):
     
     submitted = st.form_submit_button("🚀 Submit Pitch Ke Investor")
 
+# Logika saat tombol submit ditekan
 if submitted:
     if not copywriting or not team_name:
         st.warning("⚠️ Mohon isi Nama Kelompok dan Teks Copywriting secara lengkap!")
     else:
         try:
-            # Panggil Groq API Client
-            client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+            # Mengambil Groq API Key dari Streamlit Secrets
+            groq_key = st.secrets["GROQ_API_KEY"]
+            client = Groq(api_key=groq_key)
             
             with st.spinner("AI Investor sedang menganalisis pitch-mu..."):
                 prompt = f"""
@@ -34,7 +37,7 @@ if submitted:
                 - Copywriting / Promosi: {copywriting}
                 
                 Berikan respon dengan format berikut (gunakan Markdown):
-                1. **STATUS INVESTASI**: Pilih antara [INVESTED] atau [REJECTED - DITOLAK] dengan gaya bahasa lugas tapi membakar semangat.
+                1. **STATUS INVESTASI**: Pilih antara [INVESTED Rp 500 JUTA] atau [REJECTED - DITOLAK] dengan gaya bahasa lugas tapi membakar semangat.
                 2. **SKOR MARKETING**: Berikan nilai angka 1-100.
                 3. **ULASAN COPYWRITING**: Apa kelebihan dari narasi mereka? (Apakah hook-nya dapet, emosinya kena, dll).
                 4. **MASUKAN EVALUASI**: 1-2 saran konkret untuk perbaikan iklan mereka.
@@ -42,9 +45,10 @@ if submitted:
                 Gunakan nada bicara profesional, sedikit humor, dan relevan untuk anak SMA (Gen Z).
                 """
                 
+                # Menggunakan model Llama-3.3-70b dari Groq
                 response = client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="llama3-8b-8192",
+                    model="llama-3.3-70b-versatile",
                 )
                 
                 st.balloons()
