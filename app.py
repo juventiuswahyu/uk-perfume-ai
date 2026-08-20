@@ -17,7 +17,7 @@ with st.form("pitch_form"):
     base_notes = st.text_input("Base Notes", placeholder="Aroma dasar yang bertahan lama")
     
     st.subheader("📢 Copywriting & Promosi")
-    copywriting = st.text_area("Teks Copywriting Complete (Caption IG/TikTok)", height=180, placeholder="Tuliskan caption promosi lengkapmu di sini (sertakan kalimat pembuka, pesan utama, dan ajakan bertindak)...")
+    copywriting = st.text_area("Teks Copywriting Complete (Caption IG/TikTok)", height=180, placeholder="Tuliskan caption promosi lengkapmu di sini...")
     
     submitted = st.form_submit_button("🚀 Submit Pitch Ke Investor")
 
@@ -47,21 +47,21 @@ if submitted:
                 - Middle Notes: Freesia, Rose
                 - Base Notes: Patchouli, Amber, Musk
 
-                **PANDUAN PENILAIAN:**
-                1. Brand Name: Beri nilai lebih jika unik, ear-catching, dan mudah diingat.
-                2. Targeting: Semakin spesifik targetnya, semakin tinggi skornya.
-                3. Akurasi Aroma: Semakin cocok tebakan Top/Middle/Base Notes siswa dengan Racikan Asli, semakin tinggi skornya.
-                4. Bedah Copywriting:
-                   - Hook (Kalimat pembuka/penarik perhatian)
-                   - Brand Voice (Gaya bahasa & konsistensi nada)
-                   - Localization (Pendekatan konteks lokal/iklim/budaya)
-                   - Call To Action / CTA (Kejelasan ajakan bertindak)
+                **SKEMA SKOR TOTAL (SKOR MAKSIMAL 100):**
+                1. Brand Name (Bobot 20%): Keunikan, daya ingat (*ear-catching*), dan relevansi.
+                2. Targeting (Bobot 20%): Spesifikasi dan kejelasan profil audiens sasaran.
+                3. Akurasi Aroma (Bobot MAKSIMAL 15% SAJA): Keakuratan tebakan aroma siswa dibanding Racikan Asli. (Catatan: Jika aroma meleset, skor bagian ini kecil, NAMUN kelompok TETAP BISA DAPAT STATUS [INVESTED] jika skor aspek marketing lainnya sangat tinggi!).
+                4. Bedah Copywriting (Bobot 45%): Penilaian tajam pada Hook, Brand Voice, Localization, dan Call to Action (CTA).
+
+                **KRITERIA KEPUTUSAN:**
+                - STATUS [INVESTED]: Jika Skor Total >= 70 (Meskipun akurasi aroma meleset, jika marketingnya sangat kuat hingga mencapai skor total 70+, tetap beri status INVESTED!).
+                - STATUS [REJECTED - DITOLAK]: Jika Skor Total < 70.
 
                 **FORMAT OUTPUT (Gunakan Markdown):**
                 1. **STATUS INVESTASI**: Pilih antara [INVESTED] atau [REJECTED - DITOLAK] disertai komentar tajam dan membakar semangat.
-                2. **SKOR TOTAL**: Nilai 1-100 (Sebutkan rincian: Brand Name, Targeting, Akurasi Aroma, & Marketing).
+                2. **SKOR TOTAL**: Berikan angka total 1-100 dan sertakan rincian poinnya (Brand Name: x/20, Targeting: x/20, Akurasi Aroma: x/15, Marketing: x/45).
                 3. **PEMBEDAHAN COPYWRITING**: Ulas secara mendalam komponen Hook, Brand Voice, Localization, dan CTA dari teks iklan siswa.
-                4. **AROMA SEBENARNYA vs TEBAKAN SISWA**: Tampilkan tabel/perbandingan tebakan siswa dengan racikan asli.
+                4. **AROMA SEBENARNYA vs TEBAKAN SISWA**: Tampilkan perbandingan tebakan siswa dengan racikan asli.
                 5. **MASUKAN EVALUASI**: 1-2 saran konkret untuk perbaikan.
                 """
                 
