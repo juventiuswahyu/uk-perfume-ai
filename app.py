@@ -41,9 +41,10 @@ if submitted:
                 Gunakan nada bicara profesional, sedikit humor, dan relevan untuk anak SMA (Gen Z).
                 """
                 
+                # Menggunakan model llama-3.1-8b-instant yang cepat dan sangat stabil
                 response = client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="llama3-70b-8192",
+                    model="llama-3.1-8b-instant",
                 )
                 
                 st.balloons()
