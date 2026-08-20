@@ -16,12 +16,8 @@ with st.form("pitch_form"):
     middle_notes = st.text_input("Middle Notes", placeholder="Aroma inti/jantung parfum")
     base_notes = st.text_input("Base Notes", placeholder="Aroma dasar yang bertahan lama")
     
-    st.subheader("📢 Marketing Strategy")
-    hook_text = st.text_input("Hook (Kalimat Pembuka Promosi)", placeholder="Contoh: Biar kuliah seharian tetap berasa kayak lagi di kebun Inggris!")
-    brand_voice = st.text_input("Brand Voice (Gaya Bahasa)", placeholder="Contoh: Elegan, Kasual, Enerjik, Bold")
-    localization = st.text_input("Localization (Pendekatan Lokal)", placeholder="Contoh: Tahan di cuaca tropis & ramah ruangan ber-AC")
-    
-    copywriting = st.text_area("Teks Copywriting Complete (Caption IG/TikTok)", height=120)
+    st.subheader("📢 Copywriting & Promosi")
+    copywriting = st.text_area("Teks Copywriting Complete (Caption IG/TikTok)", height=180, placeholder="Tuliskan caption promosi lengkapmu di sini (sertakan kalimat pembuka, pesan utama, dan ajakan bertindak)...")
     
     submitted = st.form_submit_button("🚀 Submit Pitch Ke Investor")
 
@@ -36,7 +32,7 @@ if submitted:
             with st.spinner("AI Investor sedang menganalisis pitch-mu..."):
                 prompt = f"""
                 Kamu adalah Venture Capitalist & Marketing Director Senior di industri perfumery.
-                Tugasmu adalah menilai hasil pitch parfum siswa SMA berdasarkan parameter berikut:
+                Tugasmu adalah menilai hasil pitch parfum siswa SMA berdasarkan masukan berikut:
 
                 **INPUT SISWA:**
                 - Nama Brand: {team_name}
@@ -44,9 +40,6 @@ if submitted:
                 - Top Notes Input: {top_notes}
                 - Middle Notes Input: {middle_notes}
                 - Base Notes Input: {base_notes}
-                - Hook: {hook_text}
-                - Brand Voice: {brand_voice}
-                - Localization: {localization}
                 - Copywriting Lengkap: {copywriting}
 
                 **PATOKAN AROMA SEBENARNYA (RACIKAN ASLI):**
@@ -58,13 +51,17 @@ if submitted:
                 1. Brand Name: Beri nilai lebih jika unik, ear-catching, dan mudah diingat.
                 2. Targeting: Semakin spesifik targetnya, semakin tinggi skornya.
                 3. Akurasi Aroma: Semakin cocok tebakan Top/Middle/Base Notes siswa dengan Racikan Asli, semakin tinggi skornya.
-                4. Marketing (Hook, Brand Voice, Localization): Evaluasi seberapa tajam hook-nya, konsistensi gaya bahasa, dan relevansi pendekatan lokalnya.
+                4. Bedah Copywriting:
+                   - Hook (Kalimat pembuka/penarik perhatian)
+                   - Brand Voice (Gaya bahasa & konsistensi nada)
+                   - Localization (Pendekatan konteks lokal/iklim/budaya)
+                   - Call To Action / CTA (Kejelasan ajakan bertindak)
 
                 **FORMAT OUTPUT (Gunakan Markdown):**
-                1. **STATUS INVESTASI**: Pilih antara [INVESTED] atau [REJECTED - DITOLAK] dengan penjelasan singkat gaya investor.
-                2. **SKOR TOTAL**: Berikan nilai total 1-100 (Sebutkan rincian singkat: Brand Name, Targeting, Aroma Accuracy, Marketing).
-                3. **PENILAIAN MARKETING**: Evaluasi khusus untuk Hook, Brand Voice, dan Localization.
-                4. **AROMA SEBENARNYA vs TEBAKAN SISWA**: Tampilkan perbandingan tebakan siswa dengan racikan asli.
+                1. **STATUS INVESTASI**: Pilih antara [INVESTED] atau [REJECTED - DITOLAK] disertai komentar tajam dan membakar semangat.
+                2. **SKOR TOTAL**: Nilai 1-100 (Sebutkan rincian: Brand Name, Targeting, Akurasi Aroma, & Marketing).
+                3. **PEMBEDAHAN COPYWRITING**: Ulas secara mendalam komponen Hook, Brand Voice, Localization, dan CTA dari teks iklan siswa.
+                4. **AROMA SEBENARNYA vs TEBAKAN SISWA**: Tampilkan tabel/perbandingan tebakan siswa dengan racikan asli.
                 5. **MASUKAN EVALUASI**: 1-2 saran konkret untuk perbaikan.
                 """
                 
