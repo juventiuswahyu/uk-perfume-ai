@@ -1,5 +1,5 @@
 import streamlit as st
-from google import genai
+from groq import Groq
 
 st.set_page_config(page_title="Sedes AI Perfume Investor", page_icon="💼")
 
@@ -20,11 +20,10 @@ if submitted:
         st.warning("⚠️ Mohon isi Nama Kelompok dan Teks Copywriting secara lengkap!")
     else:
         try:
-            # Mengambil API Key secara otomatis dari Streamlit Secrets
-            api_key = st.secrets["GEMINI_API_KEY"]
-            client = genai.Client(api_key=api_key)
+            # Panggil Groq API Client
+            client = Groq(api_key=st.secrets["GROQ_API_KEY"])
             
-            with st.spinner("AI Investor sedang membaca pitch dan menilai potensi pasar..."):
+            with st.spinner("AI Investor sedang menganalisis pitch-mu..."):
                 prompt = f"""
                 Kamu adalah Venture Capitalist & Marketing Director Senior yang berpengalaman di industri perfumery.
                 Tugasmu adalah menilai hasil karya siswa SMA berikut:
@@ -35,7 +34,7 @@ if submitted:
                 - Copywriting / Promosi: {copywriting}
                 
                 Berikan respon dengan format berikut (gunakan Markdown):
-                1. **STATUS INVESTASI**: Pilih antara [INVESTED Rp 500 JUTA] atau [REJECTED - DITOLAK] dengan gaya bahasa lugas tapi membakar semangat.
+                1. **STATUS INVESTASI**: Pilih antara [INVESTED] atau [REJECTED - DITOLAK] dengan gaya bahasa lugas tapi membakar semangat.
                 2. **SKOR MARKETING**: Berikan nilai angka 1-100.
                 3. **ULASAN COPYWRITING**: Apa kelebihan dari narasi mereka? (Apakah hook-nya dapet, emosinya kena, dll).
                 4. **MASUKAN EVALUASI**: 1-2 saran konkret untuk perbaikan iklan mereka.
@@ -43,14 +42,14 @@ if submitted:
                 Gunakan nada bicara profesional, sedikit humor, dan relevan untuk anak SMA (Gen Z).
                 """
                 
-                response = client.models.generate_content(
-                    model='gemini-2.5-flash',
-                    contents=prompt
+                response = client.chat.completions.create(
+                    messages=[{"role": "user", "content": prompt}],
+                    model="llama-3.3-70b-versatile",
                 )
                 
                 st.balloons()
                 st.success("Analisis AI Investor Selesai!")
-                st.markdown(response.text)
+                st.markdown(response.choices[0].message.content)
                 
         except Exception as e:
             st.error(f"Terjadi kesalahan pada sistem: {e}")
