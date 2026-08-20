@@ -1,13 +1,11 @@
 import streamlit as st
 from groq import Groq
 
-# Set konfigurasi halaman
 st.set_page_config(page_title="Sedes AI Perfume Investor", page_icon="🧴", layout="centered")
 
 st.title("🧴 Sedes AI Perfume Investor")
 st.write("Sampaikan ide *marketing* dan *copywriting* parfum kelompokmu. Lihat apakah AI Investor tertarik mendanai brand-mu!")
 
-# Form Input Siswa
 with st.form("pitch_form"):
     team_name = st.text_input("Nama Kelompok / Brand Parfum")
     target_market = st.text_input("Target Market (Contoh: Anak skena, Gen Z, Skena Kpop, dll)")
@@ -43,15 +41,13 @@ if submitted:
                 Gunakan nada bicara profesional, sedikit humor, dan relevan untuk anak SMA (Gen Z).
                 """
                 
-                # String nama model tanpa karakter khusus
-                target_model = "llama-3.3-70b-versatile"
-                
+                # Menggunakan model produksi utama Groq yang aktif
                 response = client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model=target_model,
+                    model="openai/gpt-oss-20b",
                 )
                 
-                st.toast("🚀 Pitch berhasil dikirim ke AI Investor!", icon="🚀")
+                st.balloons()
                 st.success("Analisis AI Investor Selesai!")
                 st.markdown(response.choices[0].message.content)
                 
